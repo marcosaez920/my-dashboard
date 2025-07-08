@@ -5,14 +5,14 @@ import { notFound } from "next/navigation";
 
 
 interface Props {
-    params: { id: string };
+    params: Promise<{ id: string, name: string }>;
 }
 
 
 export async function generateMetadata ({ params }: Props ): Promise<Metadata> {
 
     try {
-        const { id, name } = await getPokemon(params.id);
+        const {id, name} = await params;
     
         return{
             title: `#${ id } - ${ name }`,
@@ -48,7 +48,8 @@ const getPokemon = async( id: string ): Promise<Pokemon> => {
 
 export default async function PokemonPage({ params }: Props) {
 
-  const pokemon = await getPokemon(params.id);
+  const { id } = await params;
+  const pokemon = await getPokemon(id);
   
 
   return (
