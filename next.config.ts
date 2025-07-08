@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'previews.123rf.com'
       },
+      {
+        protocol: 'https',
+        hostname: 'raw.githubusercontent.com'
+      },
     ]
   }
 };
